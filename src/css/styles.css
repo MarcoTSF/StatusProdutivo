@@ -1,0 +1,364 @@
+@import url(./palette.css);
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--background-body);
+  color: var(--text-body);
+  margin: 0;
+}
+
+/* ---------------- HEADER ---------------- */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-primary);
+  color: var(--white);
+  padding: 12px 100px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a {
+  display: inline-block;
+}
+
+header .logo {
+  background-color: var(--background-surface);
+  border-radius: 10px;
+  padding: 10px;
+  height: 40px;
+  width: auto;
+  transition: transform 0.2s ease;
+}
+
+header .logo:hover {
+  transform: scale(1.05);
+}
+
+header h1 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--white);
+  flex: 1;
+  text-align: center;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+header ul li a {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 500;
+  transition: color 0.2s, background-color 0.2s;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+header ul li a:hover {
+  background-color: var(--color-primary-light);
+}
+
+/* ---------------- CONTAINER ---------------- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ---------------- BARRA DE MESES ---------------- */
+.months-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 12px;
+  background: var(--background-surface);
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border-default);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.month-item {
+  padding: 8px 16px;
+  background: var(--gray-100);
+  color: var(--text-body);
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 1px solid var(--border-default);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.month-item:hover {
+  background-color: var(--color-primary-light);
+  color: var(--white);
+}
+
+.month-item.active {
+  background-color: var(--color-primary);
+  color: var(--white);
+  border-color: var(--color-primary);
+}
+
+/* ---------------- FILTRO DE MÊS ---------------- */
+#filtroMes {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  background: var(--background-surface);
+  padding: 18px 22px;
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+#filtroMes .filtro-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#filtroMes label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+#mesSelect {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-default);
+  background: var(--background-surface);
+  color: var(--text-body);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-width: 180px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 1em;
+  padding-right: 32px;
+}
+
+#mesSelect:hover {
+  border-color: var(--gray-400);
+}
+
+#mesSelect:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+#btnCarregarMes {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--white);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#btnCarregarMes:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.02);
+}
+
+/* ---------------- FILTROS DE DATA/HORA ---------------- */
+#filtros {
+  display: none;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 25px;
+  align-items: flex-end;
+  background: var(--background-surface);
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-default);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+body.has-month #filtros {
+  display: flex;
+}
+
+.filtro-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filtro-item label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+#filtros select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-default);
+  background: var(--background-surface);
+  color: var(--text-body);
+  font-size: 1rem;
+  cursor: pointer;
+  min-width: 160px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 1em;
+  padding-right: 32px;
+}
+
+#filtros select:hover {
+  border-color: var(--gray-400);
+}
+
+#filtros select:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+/* ---------------- RELATÓRIOS ---------------- */
+.relatorio-maquina {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid var(--color-primary-light);
+  border-radius: 10px;
+  background: var(--background-surface);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.relatorio-maquina h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--color-primary-dark);
+  font-size: 1.1rem;
+}
+
+.cards-horarios {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 260px;
+  max-width: 350px;
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  background: var(--gray-50);
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--color-primary);
+  text-align: left;
+  font-size: 1rem;
+  border-bottom: 1px solid var(--border-default);
+  padding-bottom: 6px;
+}
+
+.card p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  word-break: break-word;
+}
+
+.card * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.percentual-alto {
+  color: var(--feedback-success);
+  font-weight: bold;
+}
+
+.percentual-medio {
+  color: var(--feedback-warning);
+  font-weight: bold;
+}
+
+.percentual-baixo {
+  color: var(--feedback-error);
+  font-weight: bold;
+}
+
+#mensagem {
+  text-align: center;
+  margin: 8px 0 16px;
+  font-weight: 600;
+  color: var(--text-body);
+}
+
+/* ---------------- RESPONSIVO ---------------- */
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  header .logo {
+    height: 42px;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  #filtroMes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #filtroMes select,
+  #filtroMes button,
+  #filtros select {
+    width: 100%;
+  }
+
+  .card {
+    min-width: 200px;
+  }
+}

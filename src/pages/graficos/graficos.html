@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gráficos de Controle - Nocolok</title>
+    <link rel="stylesheet" href="./graficos.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../../../index.html">
+        <img src="../../assets/logo.png" alt="Logo DENSO" class="logo" />
+      </a>
+      <h1>Gráficos de Controle - Nocolok</h1>
+      <ul>
+        <li><a href="../carregar-dados/carregar-dados.html">Adicionar Novos Dados</a></li>
+        <li><a href="../../../index.html">Voltar ao Painel</a></li>
+      </ul>
+    </header>
+
+    <div class="filtros-container">
+      <button id="filtro7dias">Últimos 7 Dias</button>
+      <button id="filtro15dias">Últimos 15 Dias</button>
+      <button id="filtro30dias" class="ativo">Últimos 30 Dias</button>
+      <button id="filtroTodos">Todo o Período</button>
+    </div>
+
+    <div class="container">
+      <section class="grafico-card">
+        <h2>Média Geral - Todas as Máquinas</h2>
+        <div class="chart-container">
+          <canvas id="graficoGeral"></canvas>
+        </div>
+      </section>
+
+      <section class="grafico-card">
+        <h2>Comparativo de Áreas por Dia - NOCOLOK</h2>
+        <div class="chart-container">
+          <canvas id="graficoSetores"></canvas>
+        </div>
+      </section>
+
+      <section class="grafico-card">
+        <h2>Resultados Diários</h2>
+
+        <div class="filtros-diarios">
+          <div class="filtro-item">
+            <label for="dataSelect">Data:</label>
+            <select id="dataSelect"></select>
+          </div>
+        </div>
+
+        <div class="tabs-setores" id="tabsSetores">
+          <button data-setor="tubemill" class="ativo">Tubemill</button>
+          <button data-setor="core">Core</button>
+          <button data-setor="cravacao">Cravação</button>
+          <button data-setor="esa">ESA</button>
+        </div>
+
+        <div id="containerResultados" class="container-resultados"></div>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../data/data-out-2025.js"></script>
+    <script src="../../data/data-nov-2025.js"></script>
+    <script src="../../js/graficos.js"></script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Status Produtivo - Nocolok</title>
+        <link rel="stylesheet" href="./carregar-dados.css">
+    </head>
+
+    <body>
+        <header>
+            <a href="../../../index.html">
+                <img src="../../assets/logo.png" alt="Logo DENSO" class="logo" />
+            </a>
+            <h1>Novo Lançamento - Status Produtivo</h1>
+            <ul>
+                <li><a href="../graficos/graficos.html">Gráficos de Controle</a></li>
+                <li><a href="../../../index.html">Voltar ao Painel</a></li>
+            </ul>
+        </header>
+
+        <div class="container">
+            <div class="cabecalho">
+                <div>
+                    <label for="dataInput">Data do Relatório:</label>
+                    <input type="date" id="dataInput">
+                </div>
+                <div>
+                    <label for="horaSelect">Horário:</label>
+                    <select id="horaSelect">
+                    <option value="">Selecione...</option>
+                    <option value="09:00">09:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="13:00">13:00</option>
+                    </select>
+                </div>
+                <div>
+                    <label>&nbsp;</label>
+                    <button id="btnCarregarForm">Carregar Formulário</button>
+                </div>
+            </div>
+
+            <h2 id="formTitulo" style="display:none;">
+                Lançar dados para <span id="tituloData"></span> - <span id="tituloHora"></span>
+            </h2>
+
+            <div id="formContainer"></div>
+
+            <div id="mediasContainer" style="display:none;">
+                <div class="maquina-card">
+                    <h3>Médias</h3>
+                    <div><label for="mediaTubemill">Tubemill:</label><input type="number" id="mediaTubemill" step="0.01"></div>
+                    <div><label for="mediaCore">Core:</label><input type="number" id="mediaCore" step="0.01"></div>
+                    <div><label for="mediaCravacao">Cravação:</label><input type="number" id="mediaCravacao" step="0.01"></div>
+                    <div><label for="mediaEsa">ESA:</label><input type="number" id="mediaEsa" step="0.01"></div>
+                    <div><label for="mediaGeral">Geral:</label><input type="number" id="mediaGeral" step="0.01"></div>
+                </div>
+            </div>
+
+            <div class="botoes-acao" style="display:none;" id="botoesContainer">
+                <button id="btnGerarArquivo">Gerar e Baixar data.js</button>
+            </div>
+
+            <div id="feedback"></div>
+        </div>
+
+        <script src="../../data/data-out-2025.js"></script>
+        <script src="../../data/data-nov-2025.js"></script>
+        <script src="../../js/carregar-dados.js"></script>
+    </body>
+</html>

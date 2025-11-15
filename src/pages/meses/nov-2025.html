@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Status Produtivo - Novembro 2025</title>
+        <link rel="stylesheet" href="../../css/styles.css" />
+    </head>
+
+    <body>
+        <header>
+            <a href="../../../index.html">
+                <img src="../../assets/logo.png" alt="Logo DENSO" class="logo" />
+            </a>
+            <h1>Status Produtivo - Nocolok</h1>
+            <ul>
+                <li>
+                    <a href="../graficos/graficos.html">Gráficos de Controle</a>
+                </li>
+                <li>
+                    <a href="../carregar-dados/carregar-dados.html">Adicionar Novos Dados</a>
+                </li>
+            </ul>
+        </header>
+
+        <main class="container">
+            <nav class="months-bar">
+                <a href="./out-2025.html" class="month-item">Out/2025</a>
+                <a href="./nov-2025.html" class="month-item active">Nov/2025</a>
+            </nav>
+
+            <div id="filtros">
+                <div class="filtro-item">
+                    <label for="dataSelect">Data:</label>
+                    <select id="dataSelect"></select>
+                </div>
+
+                <div class="filtro-item">
+                    <label for="horaSelect">Horário:</label>
+                    <select id="horaSelect">
+                        <option value="">Todos</option>
+                        <option value="09:00">09:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="13:00">13:00</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="relatoriosContainer"></div>
+        </main>
+
+        <script src="../../data/data-nov-2025.js"></script>
+        <script src="../../js/script.js"></script>
+    </body>
+</html>
