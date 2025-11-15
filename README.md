@@ -120,7 +120,7 @@ Os gráficos serão gerados automaticamente.
 
 ---
 
-## 📝 Estrutura dos Dados (JSON)
+## 📝 Estrutura dos Dados (JS)
 
 Exemplo:
 
