@@ -297,31 +297,52 @@ function gerarResultadosDiarios() {
   });
 }
 
-function criarDoughnutSimples(canvas, obj, real) {
+const doughnutCenterText = {
+  id: "doughnutCenterText",
+  afterDraw(chart) {
+    const percentual = chart.config.data.percentualCenter;
+    const fontSize = chart.config.data.percentualFontSize || 22;
+    const decimalPlaces = chart.config.data.percentualDecimalPlaces || 0;
+
+    if (percentual === undefined) return;
+
+    const { ctx, chartArea: { width, height } } = chart;
+
+    ctx.save();
+    ctx.font = `bold ${fontSize}px Arial`;
+    ctx.fillStyle = "#333";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    ctx.fillText(percentual.toFixed(decimalPlaces) + "%", width / 2, height / 2);
+    ctx.restore();
+  }
+};
+
+function criarDoughnutSimples(canvas, obj, real, fontSizeCenter = 20, decimalPlaces = 2) {
   const ctx = (canvas.getContext) ? canvas.getContext("2d") : null;
   if (!ctx) return;
 
   let data, colors, labels;
+  let percentual = 0;
+
+  if (obj > 0) {
+    percentual = (real / obj) * 100;
+  }
 
   if (obj <= 0) {
     data = [1];
     colors = ["#d3d3d3"];
     labels = ["Sem meta"];
-
+    percentual = 0;
   } else {
-    const percentual = (real / obj) * 100;
-    let corPrincipal;
-
-    if (percentual >= 85) {
-      corPrincipal = "#4caf50";
-    } else if (percentual > 50) {
-      corPrincipal = "#ffc107";
-    } else {
-      corPrincipal = "#f44336";
-    }
-
     const realSlice = real;
     const restanteSlice = Math.max(obj - real, 0);
+
+    let corPrincipal =
+      percentual >= 85 ? "#4caf50" :
+      percentual > 50 ? "#ffc107" :
+      "#f44336";
 
     if (realSlice >= obj) {
       data = [realSlice];
@@ -339,6 +360,10 @@ function criarDoughnutSimples(canvas, obj, real) {
     data: {
       labels: labels,
       datasets: [{ data, backgroundColor: colors, borderWidth: 1 }],
+
+      percentualCenter: percentual,
+      percentualFontSize: fontSizeCenter,
+      percentualDecimalPlaces: decimalPlaces,
     },
     options: {
       responsive: false,
@@ -350,18 +375,15 @@ function criarDoughnutSimples(canvas, obj, real) {
           callbacks: {
             label: function(context) {
               if (obj <= 0) return `Sem meta`;
-
               const idx = context.dataIndex;
-              if (idx === 0) {
-                return `Real: ${real} (Meta: ${obj})`;
-              }
-              const restanteVal = Math.max(obj - real, 0);
-              return `Restante: ${restanteVal}`;
+              if (idx === 0) return `Real: ${real} (Meta: ${obj})`;
+              return `Restante: ${Math.max(obj - real, 0)}`;
             }
           }
         }
       }
-    }
+    },
+    plugins: [doughnutCenterText]
   });
 
   doughnutInstances.push(inst);
